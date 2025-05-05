@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Editar Livro</title>
+</head>
+<body>
+    <form action="/livro/editar" method="post">
+        <input type="hidden" name="estante_id" th:value="${livro?.estante?.id}">
+        <input type="hidden" name="id" th:value="${livro?.id}">
+        <label>Código</label>
+        <input type="text" name="codigo" th:value="${livro?.codigo}" required>
+        <label>Título do Livro</label>
+        <input type="text" name="nome" th:value="${livro?.nome}" required>
+        <label>Autor do Livro</label>
+        <input type="text" name="autor" th:value="${livro?.autor}" required>
+        <label>Unidades do Livro</label>
+        <input type="number" name="quantidade" th:value="${livro?.quantidade}" required>
+        <button type="submit">Salvar Livro</button>
+    </form>
+</body>
+</html>

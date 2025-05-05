@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title data-th-text="${estante.nome}"></title>
+</head>
+<body>
+    <h1 data-th-text="${estante.id}+' - '+${estante.nome}"></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CODIGO</th>
+                <th>NOME</th>
+                <th>AUTOR</th>
+                <th>QUANTIDADE</th>
+                <th>EDITAR</th>
+                <th>EXCLUIR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="livro: ${livros}">
+                <td data-th-text="${livro.id}"></td>
+                <td data-th-text="${livro.codigo}"></td>
+                <td data-th-text="${livro.nome}"></td>
+                <td data-th-text="${livro.autor}"></td>
+                <td data-th-text="${livro.quantidade}"></td>
+                <td><a th:href="@{'/livro/editar/'+${livro.id}}">Editar</a></td>
+                <td><a th:href="@{'/livro/deletar/'+${livro.id}}">Excluir</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{'/livro/novo/'+${estante.id}}">Adicionar Livro</a>
+</body>
+</html>

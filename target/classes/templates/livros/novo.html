@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Novo Livro</title>
 </head>
 <body>
-    
+    <form action="/livro/novo" method="post">
+        <input type="hidden" name="estante_id" th:value="${estante?.id}">
+        <label>Código</label>
+        <input type="text" name="codigo" required>
+        <label>Título do Livro</label>
+        <input type="text" name="nome" required>
+        <label>Autor do Livro</label>
+        <input type="text" name="autor" required>
+        <label>Unidades do Livro</label>
+        <input type="number" name="quantidade" required>
+        <button type="submit">Salvar Livro</button>
+    </form>
 </body>
 </html>
