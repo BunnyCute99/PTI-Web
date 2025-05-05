@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Estante</title>
+</head>
+<body>
+    <form action="/estante/editar" method="post">
+        <input type="hidden" name="id" th:value="${estante?.id}">
+        <input type="hidden" name="numero_livros" th:value="${estante?.numero_livros}">
+        <label>Nome da Estante:</label>
+        <input type="text" name="nome" th:value="${estante?.nome}" required>
+        <button type="submit">Editar Estante</button>
+    </form>
+</body>
+</html>

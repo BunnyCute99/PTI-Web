@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Livros</th>
+                <th>Entrar</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="estante : ${estantes}">
+                <td data-th-text="${estante.id}"></td>
+                <td data-th-text="${estante.Nome}"></td>
+                <td data-th-text="${estante.numero_livros}"></td>
+                <td><a>Entrar</a></td>
+                <td><a th:href="@{'/estante/editar/'+${estante.id}}">Editar</a></td>
+                <td><a th:href="@{'/estante/deletar/'+${estante.id}}">Deletar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/estante/novo}">Criar Nova Estante</a>
+</body>
+</html>
