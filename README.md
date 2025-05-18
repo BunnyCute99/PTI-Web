@@ -45,7 +45,11 @@ a URL do banco de dados é composde das seguintes informações e seguindo o seg
 Então uma url cujo o Host name é "localhost" com número da porta é "5432" e tem como banco de dados o nome "estoque" ficaria assim:
 * spring.datasource.url=jdbc:postgresql://localhost:5432/estoque
 
+### Demonstração
 
+O vídeo de demonstração pode ser encontrado na pasta de documentos do projeto no formate mkv
+
+Outra alternativa é o link do <a href="https://youtu.be/IIauu0etKFM"> Youtube </a>
 
 
 
