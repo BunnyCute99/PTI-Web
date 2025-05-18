@@ -50,9 +50,4 @@ public class EstanteControler {
         estanteService.DeletarEstante(id);
         return "redirect:/home";
     }
-
-    // Se Deus quiser ele volta pra home
-    public String listarEstantes(Estante estante) {
-        return "home";
-    }
 }
