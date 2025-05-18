@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Editar Estante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
-<body>
-    <form action="/estante/editar" method="post">
-        <input type="hidden" name="id" th:value="${estante?.id}">
-        <input type="hidden" name="numero_livros" th:value="${estante?.numero_livros}">
-        <label>Nome da Estante:</label>
-        <input type="text" name="nome" th:value="${estante?.nome}" required>
-        <button type="submit">Editar Estante</button>
-    </form>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h2 class="text-center text-primary mb-4">Editar Estante</h2>
+
+        <form action="/estante/editar" method="post" class="shadow p-4 rounded bg-white">
+            <input type="hidden" name="id" th:value="${estante?.id}" />
+            <input type="hidden" name="numero_livros" th:value="${estante?.numero_livros}" />
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome da Estante:</label>
+                <input type="text" id="nome" name="nome" class="form-control" th:value="${estante?.nome}" required />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                <a href="/" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>
