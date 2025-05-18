@@ -27,7 +27,10 @@ public class EstanteService {
     }
 
     public void DeletarEstante(int id){
-        estanteRepository.deleteById(id);
+        Estante estante = estanteRepository.getReferenceById(id);
+        if (estante.getNumero_livros() == 0) {
+            estanteRepository.deleteById(id);
+        }
     }
     
 }
