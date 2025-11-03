@@ -15,6 +15,7 @@ public class Estante {
     private int id;
     private String nome;
     private int numero_livros;
+    private double valor;
 
     @OneToMany(mappedBy = "estante")
     List<Livro> livros;
@@ -60,6 +61,16 @@ public class Estante {
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    
 
     
     
