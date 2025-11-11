@@ -21,18 +21,25 @@ public class LivroService {
     @Autowired
     EstanteRepository estanteRepository;
 
+    @Autowired
+    EstanteService estanteService;
+
     // salvar novo livro e associa a estante referente ao id e converte o preço de String para double
     public void SalvarLivro(Livro livro, int estanteID, String preco_txt){
         Estante estante = estanteRepository.getReferenceById(estanteID);
         livro.setEstante(estante);
         livro.setPreco(Double.parseDouble(preco_txt.replace(",", ".")));
-        livrosRepository.save(livro);        
+        livrosRepository.save(livro);
+        estanteService.AtulizarEstante(estante);        
     }
 
     // deletar livro e redireciona para a página de listar livros na estante referente ao id
     public String DeletarLivro(int id){
         Livro livro = livrosRepository.getReferenceById(id);
+        Estante estante = livro.getEstante();
         livrosRepository.deleteById(id);
+        estanteService.AtulizarEstante(estante);
+        
         return "redirect:/livro/listar/"+livro.getEstante().getId();
     }
 
