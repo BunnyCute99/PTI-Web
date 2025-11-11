@@ -15,7 +15,11 @@ public class Livro {
     private String nome;
     private String autor;
     private String codigo;
+    private String categoria;
+    private int ano;
     private int quantidade;
+    private double preco;
+
 
     @ManyToOne(cascade = CascadeType.MERGE)
     Estante estante;
@@ -23,14 +27,20 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(int id, String nome, String autor, String codigo, int quantidade, Estante estante) {
+    public Livro(int id, String nome, String autor, String codigo, String categoria, int ano, int quantidade,
+            double preco, Estante estante) {
         this.id = id;
         this.nome = nome;
         this.autor = autor;
         this.codigo = codigo;
+        this.categoria = categoria;
+        this.ano = ano;
         this.quantidade = quantidade;
+        this.preco = preco;
         this.estante = estante;
     }
+
+
 
     public int getId() {
         return id;
@@ -79,6 +89,32 @@ public class Livro {
     public void setEstante(Estante estante) {
         this.estante = estante;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    
 
     
 

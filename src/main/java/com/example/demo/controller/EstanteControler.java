@@ -21,17 +21,20 @@ public class EstanteControler {
     @Autowired
     HomeControler homeControler;
     
+    // retorna a pagina para criar uma nova estante
     @GetMapping("/novo")
     public String NovaEstante(){
         return "estante/novo";
     }
 
+    // cria uma nova estante e redireciona para a pagina principal
     @PostMapping("/novo")
     public String CriarEstante(Estante novEstante){
         estanteService.CriarEstante(novEstante);
         return "redirect:/home";
     }
 
+    // retorna a pagina para editar uma estante existente
     @GetMapping("/editar/{id}")
     public ModelAndView EditarEstante(@PathVariable("id") int id){
         ModelAndView mv = new ModelAndView("estante/editar");
@@ -39,12 +42,14 @@ public class EstanteControler {
         return mv;
     }
 
+    // edita a estante e redireciona para a pagina principal
     @PostMapping("/editar")
     public String EditarEstante(Estante estante){
         estanteService.EditarEstante(estante);
         return "redirect:/home";
     }
 
+    // deleta a estante e redireciona para a pagina principal
     @GetMapping("/deletar/{id}")
     public String DeletarEstante(@PathVariable("id") int id){
         estanteService.DeletarEstante(id);

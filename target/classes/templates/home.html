@@ -6,35 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 
 <body class="bg-light">
 
     <div class="container mt-5">
-        <h1 class="mb-4 text-center text-primary">Estantes</h1>
+        
+        <a th:href="@{/home}" class="text-decoration-none">
+            <h1 class="mb-4 text-center text-primary">
+                Estantes
+            </h1>
+        </a>
 
-        <table class="table table-striped table-bordered shadow">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Livros</th>
-                    <th>Entrar</th>
-                    <th>Editar</th>
-                    <th>Deletar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-th-each="estante : ${estantes}">
-                    <td data-th-text="${estante.id}"></td>
-                    <td data-th-text="${estante.Nome}"></td>
-                    <td data-th-text="${estante.numero_livros}"></td>
-                    <td><a th:href="@{'/livro/listar/'+${estante.id}}">Entrar</a></td>
-                    <td><a th:href="@{'/estante/editar/'+${estante.id}}">Editar</a></td>
-                    <td><a th:href="@{'/estante/deletar/'+${estante.id}}">Deletar</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <form class="mb-4 d-flex justify-content-center" method="get" action="/home">
+            <input type="text" name="pesquisa" class="form-control w-50 me-2" placeholder="Pesquisar estante..." th:value="${pesquisa ?: ''}" />
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i> Pesquisar
+            </button>
+        </form>
+
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="card m-2 shadow justify-content-center flex-nowrap" style="width: 18rem;" th:each="estante : ${estantes}">
+                <h1 class="card-title text-primary text-center">
+                    <a th:href="@{'/livro/listar/'+${estante.id}}" class="text-decoration-none">
+                        <i class="bi bi-folder" style="font-size: 4rem;"></i>
+                        <h5 class="card-title text-primary text-center" th:text="${estante.nome} + ' (' + ${estante.numero_livros} + ')'"></h5>
+                    </a>
+                </h1>      
+                <div class="justify-content-center d-flex">
+                    <a th:href="@{'/estante/editar/'+${estante.id}}" class="btn btn-sm btn-warning me-3">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a th:href="@{'/estante/deletar/'+${estante.id}}" 
+                        class="btn btn-sm btn-danger"
+                        onclick="return confirm('Tem certeza que deseja excluir esta estante?');">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>              
+            </div>
+
+        </div>
 
         <div class="text-center mt-4">
             <a th:href="@{/estante/novo}" class="btn btn-success">Criar Nova Estante</a>

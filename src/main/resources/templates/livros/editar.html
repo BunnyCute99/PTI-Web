@@ -18,30 +18,59 @@
 
             <div class="mb-3">
                 <label class="form-label">Código</label>
-                <input type="text" name="codigo" class="form-control" th:value="${livro?.codigo}" required />
+                <input type="text" name="codigo" class="form-control" placeholder="Código do Livro" th:value="${livro?.codigo}" required/>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Título do Livro</label>
-                <input type="text" name="nome" class="form-control" th:value="${livro?.nome}" required />
+                <input type="text" name="nome" class="form-control" placeholder="Título do Livro" th:value="${livro?.nome}" required />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Autor do Livro</label>
-                <input type="text" name="autor" class="form-control" th:value="${livro?.autor}" required />
+                <input type="text" name="autor" class="form-control" placeholder="Autor do Livro" th:value="${livro?.autor}" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Anos de Publicação</label>
+                <input type="number" name="ano" class="form-control" placeholder="Ano" th:value="${livro?.ano}" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Gênero do Livro</label>
+                <input type="text" name="categoria" class="form-control" placeholder="Gênero do Livro" th:value="${livro?.categoria}" required />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Unidades do Livro</label>
-                <input type="number" name="quantidade" class="form-control" th:value="${livro?.quantidade}" required />
+                <input type="number" name="quantidade" class="form-control" placeholder="Quantidade de Unidades" th:value="${livro?.quantidade}" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Preço Unitário dos Livros</label>
+                <input type="text" name="preco_txt" class="form-control" placeholder="Valor das Unidades" required id="preco_txt" inputmode="decimal" th:value="${livro?.preco}"/>
             </div>
 
             <div class="text-center">
                 <button type="submit" class="btn btn-success">Salvar Livro</button>
-                <a th:href="@{'/livro/listar/' + ${livro?.estante?.id}}" class="btn btn-secondary ms-2">Cancelar</a>
+                <a th:href="@{'/livro/listar/' + ${livro?.estante?.id}}" class="btn btn-danger ms-2">Cancelar</a>
             </div>
         </form>
     </div>
 
 </body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const precoInput = document.getElementById('preco_txt');
+    precoInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = (value / 100).toFixed(2) + '';
+        value = value.replace('.', ',');
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        e.target.value = value;
+    });
+});
+</script>
+
 </html>
